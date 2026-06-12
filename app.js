@@ -39,10 +39,10 @@
   async function fetchEvents() {
     showStatus("Syncing events…", false);
 
-    // Use CORS proxy to fetch from Google Sheets
+    // Use allorigins.win as CORS proxy (more reliable than cors-anywhere)
     const range  = encodeURIComponent(`${CONFIG.SHEET_NAME}!A2:Z1000`);
     const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${range}?key=${CONFIG.API_KEY}`;
-    const proxyUrl = `https://cors-anywhere.herokuapp.com/${sheetUrl}`;
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(sheetUrl)}`;
 
     try {
       const res  = await fetch(proxyUrl);
