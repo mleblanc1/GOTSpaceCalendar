@@ -72,7 +72,7 @@
         Time:         (row[C.Time]        || "Untitled Event").trim(),
         Organization: (row[C.Organization] || "").trim(),
         Where:        (row[C.Where]    || "").trim(),
-        # Presenters: (row[C.spots]       || "").trim(),
+        spots: (row[C.spots]       || "").trim(),
         rowIndex:    i + 2, // 1-indexed, skipping header row
       }))
       .filter(e => e.date && /^\d{4}-\d{2}-\d{2}$/.test(e.date));
