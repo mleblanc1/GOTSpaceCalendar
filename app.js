@@ -68,12 +68,11 @@
     const C = CONFIG.COLUMNS;
     return rows
       .map((row, i) => ({
-        date:        (row[C.date]        || "").trim(),
-        name:        (row[C.name]        || "Untitled Event").trim(),
-        description: (row[C.description] || "").trim(),
-        location:    (row[C.location]    || "").trim(),
-        spots:       (row[C.spots]       || "").trim(),
-        signupUrl:   (row[C.signupUrl]   || "").trim(),
+        Date:         (row[C.Date]        || "").trim(),
+        Time:         (row[C.Time]        || "Untitled Event").trim(),
+        Organization: (row[C.Organization] || "").trim(),
+        Where:        (row[C.Where]    || "").trim(),
+        # Presenters: (row[C.spots]       || "").trim(),
         rowIndex:    i + 2, // 1-indexed, skipping header row
       }))
       .filter(e => e.date && /^\d{4}-\d{2}-\d{2}$/.test(e.date));
