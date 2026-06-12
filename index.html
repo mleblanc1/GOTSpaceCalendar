@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-brand">
+        <span class="brand-mark">◆</span>
+        <span class="brand-name">Community Calendar</span>
+      </div>
+      <nav class="header-nav">
+        <button class="nav-btn active" data-view="calendar">Calendar</button>
+        <button class="nav-btn" data-view="list">List</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Month navigation -->
+    <div class="month-bar">
+      <button class="month-nav" id="prev-month" aria-label="Previous month">&#8592;</button>
+      <h2 class="month-label" id="month-label"></h2>
+      <button class="month-nav" id="next-month" aria-label="Next month">&#8594;</button>
+    </div>
+
+    <!-- Status banner -->
+    <div class="status-bar" id="status-bar" hidden>
+      <span id="status-msg"></span>
+    </div>
+
+    <!-- Calendar grid view -->
+    <section id="view-calendar" class="view-section">
+      <div class="calendar-grid">
+        <div class="day-header">Sun</div>
+        <div class="day-header">Mon</div>
+        <div class="day-header">Tue</div>
+        <div class="day-header">Wed</div>
+        <div class="day-header">Thu</div>
+        <div class="day-header">Fri</div>
+        <div class="day-header">Sat</div>
+      </div>
+      <div class="calendar-body" id="calendar-body"></div>
+    </section>
+
+    <!-- List view -->
+    <section id="view-list" class="view-section hidden">
+      <div class="list-body" id="list-body"></div>
+    </section>
+  </main>
+
+  <!-- Event detail modal -->
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close">&#10005;</button>
+      <div class="modal-date-badge" id="modal-date-badge"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-description" id="modal-description"></p>
+      <div class="modal-meta" id="modal-meta"></div>
+      <div class="modal-signup" id="modal-signup"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Events managed via <a href="https://docs.google.com/spreadsheets" target="_blank" rel="noopener">Google Sheets</a>. Last synced: <span id="last-sync">—</span></p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
