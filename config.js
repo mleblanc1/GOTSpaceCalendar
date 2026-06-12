@@ -28,7 +28,7 @@ const CONFIG = {
     Time: 1,         // column B
     Organization: 2,  // column C
     Where: 3,     // column D
-    # Presenters: 4,        // column E
+    spots: 4,        // column E
   },
 
   // 5. Your shared Google Form URL (embedded in every event modal)
