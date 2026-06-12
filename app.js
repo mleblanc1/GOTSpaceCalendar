@@ -39,11 +39,13 @@
   async function fetchEvents() {
     showStatus("Syncing events…", false);
 
+    // Use CORS proxy to fetch from Google Sheets
     const range  = encodeURIComponent(`${CONFIG.SHEET_NAME}!A2:Z1000`);
-    const url    = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${range}?key=${CONFIG.API_KEY}`;
+    const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${range}?key=${CONFIG.API_KEY}`;
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/${sheetUrl}`;
 
     try {
-      const res  = await fetch(url);
+      const res  = await fetch(proxyUrl);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
 
@@ -68,11 +70,11 @@
     const C = CONFIG.COLUMNS;
     return rows
       .map((row, i) => ({
-        Date:         (row[C.Date]        || "").trim(),
-        Time:         (row[C.Time]        || "Untitled Event").trim(),
-        Organization: (row[C.Organization] || "").trim(),
-        Where:        (row[C.Where]    || "").trim(),
-        spots: (row[C.spots]       || "").trim(),
+        date:        (row[C.date]        || "").trim(),
+        name:        (row[C.name]        || "Untitled Event").trim(),
+        description: (row[C.description] || "").trim(),
+        location:    (row[C.location]    || "").trim(),
+        spots:       (row[C.spots]       || "").trim(),
         rowIndex:    i + 2, // 1-indexed, skipping header row
       }))
       .filter(e => e.date && /^\d{4}-\d{2}-\d{2}$/.test(e.date));
